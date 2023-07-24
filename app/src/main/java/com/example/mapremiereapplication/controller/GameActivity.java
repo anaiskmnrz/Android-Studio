@@ -26,12 +26,12 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     Button mAnswerButton4;
 
     private final QuestionBank mQuestionBank = generateQuestionBank();
-   /* private int mRemainingQuestionCount;
+    private int mRemainingQuestionCount;
     private int mScore;
 
     private Question mCurrentQuestion;
 
-    public static final String BUNDLE_EXTRA_SCORE = "BUNDLE_EXTRA_SCORE";*/
+    public static final String BUNDLE_EXTRA_SCORE = "BUNDLE_EXTRA_SCORE";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,8 +52,8 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         mAnswerButton4.setOnClickListener(this);
 
         displayQuestion(mQuestionBank.getCurrentQuestion());
-        /*mRemainingQuestionCount = 12;
-        mScore = 0;*/
+        mRemainingQuestionCount = 3;
+        mScore = 0;
     }
 
 
@@ -82,14 +82,14 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
             throw new IllegalStateException("Unknown clicked view : " + v);
         }
 
-       /* if (index == mQuestionBank.getCurrentQuestion().getAnswerIndex()) {
-            mScore ++;
+       if (index == mQuestionBank.getCurrentQuestion().getAnswerIndex()) {
+           // mScore ++;
             Toast.makeText(this, "Correct!", Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(this, "Incorrect!", Toast.LENGTH_SHORT).show();
         }
 
-        mRemainingQuestionCount--;
+       mRemainingQuestionCount--;
 
         if (mRemainingQuestionCount > 0) {
             mCurrentQuestion = mQuestionBank.getNextQuestion();
@@ -112,7 +112,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
             setResult(RESULT_OK, intent);
             finish();
         }
-*/
+
     }
 
     public QuestionBank generateQuestionBank() {
