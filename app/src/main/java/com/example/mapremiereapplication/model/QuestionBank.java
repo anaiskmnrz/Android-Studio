@@ -10,9 +10,7 @@ public class QuestionBank implements Serializable {
         private int mQuestionIndex;
 
         public QuestionBank(List<Question> questionList) {
-            // Mélanger la liste des questions avant de l'enregistrer
             this.mQuestionList = questionList;
-
             Collections.shuffle(mQuestionList);
         }
 

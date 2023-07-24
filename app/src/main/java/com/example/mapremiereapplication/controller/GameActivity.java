@@ -17,7 +17,7 @@ import com.example.mapremiereapplication.model.QuestionBank;
 
 import java.util.Arrays;
 
-public class GameActivity extends AppCompatActivity /*implements View.OnClickListener*/ {
+public class GameActivity extends AppCompatActivity implements View.OnClickListener {
 
     TextView mQuestionTextView;
     Button mAnswerButton1;
@@ -25,8 +25,8 @@ public class GameActivity extends AppCompatActivity /*implements View.OnClickLis
     Button mAnswerButton3;
     Button mAnswerButton4;
 
-   /* private final QuestionBank mQuestionBank = generateQuestionBank();
-    private int mRemainingQuestionCount;
+    private final QuestionBank mQuestionBank = generateQuestionBank();
+   /* private int mRemainingQuestionCount;
     private int mScore;
 
     private Question mCurrentQuestion;
@@ -45,18 +45,77 @@ public class GameActivity extends AppCompatActivity /*implements View.OnClickLis
 
         // Use the same listener for the four buttons.
 // The view id value will be used to distinguish the button triggered
-        /*
+
         mAnswerButton1.setOnClickListener(this);
         mAnswerButton2.setOnClickListener(this);
         mAnswerButton3.setOnClickListener(this);
         mAnswerButton4.setOnClickListener(this);
 
         displayQuestion(mQuestionBank.getCurrentQuestion());
-        mRemainingQuestionCount = 12;
-        mScore = 0;
-    }*/
+        /*mRemainingQuestionCount = 12;
+        mScore = 0;*/
+    }
 
-   /* public QuestionBank generateQuestionBank() {
+
+   private void displayQuestion(final Question question) {
+        mQuestionTextView.setText(question.getQuestion());
+        mAnswerButton1.setText(question.getChoiceList().get(0));
+        mAnswerButton2.setText(question.getChoiceList().get(1));
+        mAnswerButton3.setText(question.getChoiceList().get(2));
+        mAnswerButton4.setText(question.getChoiceList().get(3));
+    }
+
+   @Override
+    public void onClick(View v) {
+
+        int index;
+
+        if (v == mAnswerButton1) {
+            index = 0;
+        } else if (v == mAnswerButton2) {
+            index = 1;
+        } else if (v == mAnswerButton3) {
+            index = 2;
+        } else if (v == mAnswerButton4) {
+            index = 3;
+        } else {
+            throw new IllegalStateException("Unknown clicked view : " + v);
+        }
+
+       /* if (index == mQuestionBank.getCurrentQuestion().getAnswerIndex()) {
+            mScore ++;
+            Toast.makeText(this, "Correct!", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, "Incorrect!", Toast.LENGTH_SHORT).show();
+        }
+
+        mRemainingQuestionCount--;
+
+        if (mRemainingQuestionCount > 0) {
+            mCurrentQuestion = mQuestionBank.getNextQuestion();
+            displayQuestion(mCurrentQuestion);
+        } else {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+            builder.setTitle("Well done!")
+                    .setMessage("Your score is " + mScore)
+                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            finish();
+                        }
+                    })
+                    .create()
+                    .show();
+            Intent intent = new Intent();
+            intent.putExtra(BUNDLE_EXTRA_SCORE, mScore);
+            setResult(RESULT_OK, intent);
+            finish();
+        }
+*/
+    }
+
+    public QuestionBank generateQuestionBank() {
         Question question1 = new Question(
                 "Quelle est la capitale du Kazakhstan ?",
                 Arrays.asList(
@@ -181,63 +240,6 @@ public class GameActivity extends AppCompatActivity /*implements View.OnClickLis
 
 
         return new QuestionBank(Arrays.asList(question1, question2, question3));
-    }*/
-
-   /* private void displayQuestion(final Question question) {
-        mQuestionTextView.setText(question.getQuestion());
-        mAnswerButton1.setText(question.getChoiceList().get(0));
-        mAnswerButton2.setText(question.getChoiceList().get(1));
-        mAnswerButton3.setText(question.getChoiceList().get(2));
-        mAnswerButton4.setText(question.getChoiceList().get(3));
     }
-*/
-   /* @Override
-    public void onClick(View v) {
 
-        int index;
-
-        if (v == mAnswerButton1) {
-            index = 0;
-        } else if (v == mAnswerButton2) {
-            index = 1;
-        } else if (v == mAnswerButton3) {
-            index = 2;
-        } else if (v == mAnswerButton4) {
-            index = 3;
-        } else {
-            throw new IllegalStateException("Unknown clicked view : " + v);
-        }
-
-        if (index == mQuestionBank.getCurrentQuestion().getAnswerIndex()) {
-            mScore ++;
-            Toast.makeText(this, "Correct!", Toast.LENGTH_SHORT).show();
-        } else {
-            Toast.makeText(this, "Incorrect!", Toast.LENGTH_SHORT).show();
-        }
-
-        mRemainingQuestionCount--;
-
-        if (mRemainingQuestionCount > 0) {
-            mCurrentQuestion = mQuestionBank.getNextQuestion();
-            displayQuestion(mCurrentQuestion);
-        } else {
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-
-            builder.setTitle("Well done!")
-                    .setMessage("Your score is " + mScore)
-                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            finish();
-                        }
-                    })
-                    .create()
-                    .show();
-            Intent intent = new Intent();
-            intent.putExtra(BUNDLE_EXTRA_SCORE, mScore);
-            setResult(RESULT_OK, intent);
-            finish();
-        }
-*/
-    }
 }
